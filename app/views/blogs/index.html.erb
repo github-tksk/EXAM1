@@ -2,13 +2,12 @@
   <div class="wrapper col-md-8 col-md-offset-2 col-sm-10">
     <p><%= notice %></p>
     <h1>ブログ一覧</h1>
-      <%= link_to "ブログを作成する", new_blog_path, class: 'btn btn-default' %>
+      <%= link_to "ツイートする", new_blog_path, class: 'btn btn-default' %>
       
     <% @blogs.each do |blog| %>
 
       <div class="row">
-        <h4><strong><%= blog.title %></strong></h4>
-        <p><%= profile_img(User.find(blog.user_id)) %> <%= User.find(blog.user_id).name %> さんが投稿しました。</p>
+        <p><%= profile_img(User.find(blog.user_id)) %> <%= User.find(blog.user_id).name %> </p>
         <p><%= blog.content %></p>
         
         <%= link_to "編集", edit_blog_path(blog.id), class: 'btn btn-default btn-sm btn-success' %>

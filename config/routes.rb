@@ -1,5 +1,14 @@
 Rails.application.routes.draw do
 
+#  devise_for :users
+#  get 'top/index'
+
+  resources :tweets, only: [:index, :new, :create, :edit, :update, :destroy] do
+    collection do
+      post :confirm
+    end
+  end
+
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   #devise_for :users
   
@@ -8,24 +17,15 @@ Rails.application.routes.draw do
     omniauth_callbacks: "users/omniauth_callbacks"
   }
   
-  resources :contacts, only: [:new, :create] do 
-    collection do
-      post :confirm
-    end
-    member do
-      post :confirm
-    end
-  end
-  resources :blogs, only: [:index, :new, :create, :edit, :update, :destroy] do
-    collection do
-      post :confirm
-    end
-    member do
-      post :confirm
-    end
-  end
+#  resources :blogs, only: [:index, :new, :create, :edit, :update, :destroy] do
+#    collection do
+#     post :confirm
+#    end
+#    member do
+#      post :confirm
+#    end
+#  end
   
-  resources :poems, only: [:index] 
   root 'top#index'
   
   if Rails.env.development?
